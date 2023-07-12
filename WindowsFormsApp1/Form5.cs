@@ -340,6 +340,7 @@ namespace WindowsFormsApp1
             int i = cmd.ExecuteNonQuery();
             int j = cmd1.ExecuteNonQuery();
             MessageBox.Show(i.ToString(),j.ToString());
+            //hello
         }
     }
 }
