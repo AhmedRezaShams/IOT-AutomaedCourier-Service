@@ -54,6 +54,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -149,9 +151,9 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Location = new System.Drawing.Point(72, 307);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 13);
+            this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 12;
-            this.label3.Text = "National Id No";
+            this.label3.Text = "Email";
             // 
             // label6
             // 
@@ -304,7 +306,7 @@
             this.label13.BackColor = System.Drawing.SystemColors.MenuText;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label13.Location = new System.Drawing.Point(702, 307);
+            this.label13.Location = new System.Drawing.Point(702, 400);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(34, 13);
             this.label13.TabIndex = 27;
@@ -313,10 +315,31 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(688, 338);
+            this.dateTimePicker1.Location = new System.Drawing.Point(688, 434);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(190, 19);
             this.dateTimePicker1.TabIndex = 31;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.SystemColors.MenuText;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label14.Location = new System.Drawing.Point(702, 307);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(37, 13);
+            this.label14.TabIndex = 32;
+            this.label14.Text = "Email";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(688, 340);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(362, 19);
+            this.textBox10.TabIndex = 33;
+            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged_1);
             // 
             // send
             // 
@@ -328,6 +351,8 @@
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1056, 564);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox10);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -391,5 +416,7 @@
         private System.Windows.Forms.Label label13;
         private System.DirectoryServices.DirectoryEntry directoryEntry1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox10;
     }
 }

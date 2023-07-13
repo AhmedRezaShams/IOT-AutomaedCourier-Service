@@ -33,6 +33,8 @@ namespace WindowsFormsApp1
         public string RName { get; set; }
         public string RAddress { get; set; }
         public string RPhone { get; set; }
+        public string Smail { get; set; }
+        public string Rmail { get; set; }
 
         public Form5()
         {
@@ -50,6 +52,8 @@ namespace WindowsFormsApp1
             textBox3.Text = RName;
             textBox2.Text = RAddress;
             textBox1.Text = RPhone;
+            textBox10.Text = Smail;
+            textBox11.Text = Rmail;
             Random ran = new Random();
             int randomno = ran.Next(0, 1000000);
             textBox9.Text = randomno.ToString();
@@ -131,7 +135,8 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-           Form6 fm6 = new Form6();
+            button4_Click(null, EventArgs.Empty);
+            Form6 fm6 = new Form6();
             fm6.APhone = textBox5.Text;
             fm6.BPhone = textBox2.Text;
             fm6.Price = textBox7.Text;
@@ -153,12 +158,6 @@ namespace WindowsFormsApp1
         private void button2_Click(object sender, EventArgs e)
         {
             button3_Click(null, EventArgs.Empty);
-            
-            if (textBox7.TextLength > 0)
-            {
-                button4_Click(null, EventArgs.Empty);
-            }
-            
             string m1 = "ok";
                 serialPort1.Write(m1);
                 string s = serialPort1.ReadLine();
@@ -333,14 +332,24 @@ namespace WindowsFormsApp1
             MySqlConnection con = new MySqlConnection(constring);
             con.Open();
             //string createable = "creat table test_table(id int,f_name varchar(50),l_name varchar(50))";
-            string insert = "insert into sender(code) values('" + textBox9.Text + "') ";
-            string insert1 = "INSERT INTO `receiver`( `code`) values('" + textBox9.Text + "') ";
+            string insert = "UPDATE `sender` SET `code`= '['" + textBox9.Text + "']' WHERE `id` =   ";
+            //string insert1 = "INSERT INTO `receiver`( `code`) values('" + textBox9.Text + "') ";
             MySqlCommand cmd = new MySqlCommand(insert, con);
-            MySqlCommand cmd1 = new MySqlCommand(insert1, con);
+            //MySqlCommand cmd1 = new MySqlCommand(insert1, con);
             int i = cmd.ExecuteNonQuery();
-            int j = cmd1.ExecuteNonQuery();
-            MessageBox.Show(i.ToString(),j.ToString());
+           // int j = cmd1.ExecuteNonQuery();
+            MessageBox.Show(i.ToString());
             //hello
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -120,9 +120,12 @@ namespace WindowsFormsApp1
                 MySqlConnection con = new MySqlConnection(constring);
                 con.Open();
                 //string createable = "creat table test_table(id int,f_name varchar(50),l_name varchar(50))";
-                string insert = "insert into sender(f_name,l_name,address,nid,phone,f_name1,l_name1,address1,phone1) values('" + textBox1.Text + "','" + textBox4.Text + "','" + textBox3.Text + "','" + textBox2.Text + "','" + textBox5.Text + "','" + textBox9.Text + "','" + textBox8.Text + "','" + textBox7.Text + "','" + textBox6.Text + "') ";
+                string insert = "insert into sender(f_name,l_name,address,Semail,phone,f_name1,l_name1,address1,phone1) values('" + textBox1.Text + "','" + textBox4.Text + "','" + textBox3.Text + "','" + textBox2.Text + "','" + textBox5.Text + "','" + textBox9.Text + "','" + textBox8.Text + "','" + textBox7.Text + "','" + textBox6.Text + "') ";
+                string insert1 = "insert into receiver(Remail) values('" + textBox10.Text + "') ";
                 MySqlCommand cmd = new MySqlCommand(insert, con);
+                MySqlCommand cmd1 = new MySqlCommand(insert1, con);
                 int i = cmd.ExecuteNonQuery();
+                int j = cmd1.ExecuteNonQuery();
                 MessageBox.Show(i.ToString());
                 if (i == 1)
                 {
@@ -133,7 +136,8 @@ namespace WindowsFormsApp1
                     fm5.RName = textBox9.Text;
                     fm5.RAddress = textBox7.Text;
                     fm5.RPhone = textBox6.Text;
-
+                    fm5.Smail = textBox2.Text;
+                    fm5.Rmail = textBox10.Text;
                     fm5.Show();
                     this.Hide();
                 }
@@ -248,5 +252,9 @@ namespace WindowsFormsApp1
 
         }
 
+        private void textBox10_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
