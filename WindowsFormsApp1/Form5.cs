@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinForms = System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using ZXing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp1
 {
@@ -135,12 +137,16 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+            
             button4_Click(null, EventArgs.Empty);
             Form6 fm6 = new Form6();
             fm6.APhone = textBox5.Text;
             fm6.BPhone = textBox2.Text;
             fm6.Price = textBox7.Text;
             fm6.Serial = textBox9.Text;
+            fm6.Semail = textBox10.Text;
+            fm6.Remail = textBox11.Text;
             fm6.Show();
            this.Hide();
         }
@@ -157,8 +163,9 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            button3_Click(null, EventArgs.Empty);
-            string m1 = "ok";
+                button4_Click(null, EventArgs.Empty);
+                button3_Click(null, EventArgs.Empty);
+                string m1 = "ok";
                 serialPort1.Write(m1);
                 string s = serialPort1.ReadLine();
                 double a = Convert.ToDouble(s);
@@ -292,10 +299,10 @@ namespace WindowsFormsApp1
                     textBox7.Text = "50";
                 }
 
-            if (serialPort1.IsOpen)
+            /*if (serialPort1.IsOpen)
             {
                 serialPort1.Close();
-            }
+            }*/
 
         }
 
@@ -311,6 +318,7 @@ namespace WindowsFormsApp1
 
         private async void button3_Click(object sender, EventArgs e)
         {
+
             label7.Visible = true;
             await Task.Delay(5000);
             label7.Visible = false;
@@ -332,13 +340,27 @@ namespace WindowsFormsApp1
             MySqlConnection con = new MySqlConnection(constring);
             con.Open();
             //string createable = "creat table test_table(id int,f_name varchar(50),l_name varchar(50))";
-            string insert = "UPDATE `sender` SET `code`= '['" + textBox9.Text + "']' WHERE `id` =   ";
+            string show = "SELECT  `id` FROM `sender` ORDER BY ID DESC LIMIT 1";
+            MySqlCommand cmd2 = new MySqlCommand(show, con);
+            
+            MySqlDataReader reader = cmd2.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    textBox12.Text = reader.GetString(0);
+                    
+                }
+                reader.Close();
+            }
+            string textboxValue = textBox12.Text;
+            string insert = "UPDATE `sender` SET `code`='" + textBox9.Text + "' WHERE `id`= '" + textboxValue + "' ";
             //string insert1 = "INSERT INTO `receiver`( `code`) values('" + textBox9.Text + "') ";
             MySqlCommand cmd = new MySqlCommand(insert, con);
             //MySqlCommand cmd1 = new MySqlCommand(insert1, con);
             int i = cmd.ExecuteNonQuery();
-           // int j = cmd1.ExecuteNonQuery();
-            MessageBox.Show(i.ToString());
+            // int j = cmd1.ExecuteNonQuery();
+            // MessageBox.Show(i.ToString());
             //hello
         }
 
@@ -351,5 +373,42 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void textBox12_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+       
+        
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(bitmap, 0, 0);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+            Panel panel = new Panel();
+            this.Controls.Add(panel);
+            Graphics grp = panel.CreateGraphics();
+            Size formSize = this.ClientSize;
+            bitmap = new Bitmap(formSize.Width, formSize.Height, grp);
+            grp = Graphics.FromImage(bitmap);
+            Point panelLocation = PointToScreen(panel.Location);
+            grp.CopyFromScreen(panelLocation.X, panelLocation.Y, 0, 0, formSize);
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.PrintPreviewControl.Zoom = 1;
+            printPreviewDialog1.ShowDialog();
+        }
+        Bitmap bitmap;
+        private void CaptureScreen()
+        {
+            Graphics myGraphics = this.CreateGraphics();
+            Size s = this.Size;
+            bitmap = new Bitmap(s.Width, s.Height, myGraphics);
+            Graphics memoryGraphics = Graphics.FromImage(bitmap);
+            memoryGraphics.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, s);
+        }
+
     }
 }
