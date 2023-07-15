@@ -163,6 +163,10 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (comboBox1.SelectedIndex > 0 && comboBox2.SelectedIndex > 0)
+            {
+
+
                 button4_Click(null, EventArgs.Empty);
                 button3_Click(null, EventArgs.Empty);
                 string m1 = "ok";
@@ -173,8 +177,8 @@ namespace WindowsFormsApp1
                 //textBox8.Refresh();
                 double i = 0.05;
                 double j = 0.10;
-            button2.Visible = false;
-            if (comboBox1.SelectedIndex == 0 && comboBox2.SelectedIndex == 0 && a <= i)
+                button2.Visible = false;
+                if (comboBox1.SelectedIndex == 0 && comboBox2.SelectedIndex == 0 && a <= i)
                 {
                     textBox7.Text = "10";
                 }
@@ -298,6 +302,11 @@ namespace WindowsFormsApp1
 
                     textBox7.Text = "50";
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please Select Description and Quantity");
+            }
 
             /*if (serialPort1.IsOpen)
             {

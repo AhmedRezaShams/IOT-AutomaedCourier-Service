@@ -58,7 +58,8 @@ namespace WindowsFormsApp1
             textBox1.Text = Serial;
             textBox4.Text = Semail;
             textBox6.Text = Remail;
-            //button4_Click(null, EventArgs.Empty);
+            button4_Click(null, EventArgs.Empty);
+
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -147,9 +148,10 @@ namespace WindowsFormsApp1
         private void button4_Click(object sender, EventArgs e)
         {
                 GeneratedBarcode Qrcode = QRCodeWriter.CreateQrCode(textBox1.Text);
+            Qrcode.ResizeTo(200, 200);
             Qrcode.SaveAsPng("QrCode.png");
             pictureBox1.Image = new Bitmap("QrCode.png");
-
+            
         }
 
 
