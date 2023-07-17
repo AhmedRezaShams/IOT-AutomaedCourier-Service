@@ -13,6 +13,7 @@ using WinForms = System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using ZXing;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Globalization;
 
 namespace WindowsFormsApp1
 {
@@ -41,6 +42,7 @@ namespace WindowsFormsApp1
         public Form5()
         {
             InitializeComponent();
+            //serialPort1.DtrEnable = false;
             serialPort1.Open();
 
         }
@@ -127,7 +129,7 @@ namespace WindowsFormsApp1
 
         private void textBox8_TextChanged(object sender, EventArgs e)
         {
-
+            //textBox8_TextChanged(sender, new EventArgs());
         }
 
         private void textBox9_TextChanged(object sender, EventArgs e)
@@ -139,7 +141,7 @@ namespace WindowsFormsApp1
         {
             
             
-            button4_Click(null, EventArgs.Empty);
+            //button4_Click(null, EventArgs.Empty);
             Form6 fm6 = new Form6();
             fm6.APhone = textBox5.Text;
             fm6.BPhone = textBox2.Text;
@@ -161,21 +163,20 @@ namespace WindowsFormsApp1
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex > -1 && comboBox2.SelectedIndex > -1)
             {
 
-
-
-                button4_Click(null, EventArgs.Empty);
+               // button4_Click(null, EventArgs.Empty);
                 button3_Click(null, EventArgs.Empty);
                 string m1 = "ok";
                 serialPort1.Write(m1);
                 string s = serialPort1.ReadLine();
+               // float a = float.Parse(valueOfPort, CultureInfo.InvariantCulture.NumberFormat);
                 double a = Convert.ToDouble(s);
                 textBox8.Text = s;
-                //textBox8.Refresh();
+                textBox8.Refresh();
                 double i = 0.05;
                 double j = 0.10;
                 button2.Visible = false;
