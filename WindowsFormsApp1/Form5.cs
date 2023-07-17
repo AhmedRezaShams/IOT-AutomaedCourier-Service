@@ -163,8 +163,9 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex > 0 && comboBox2.SelectedIndex > 0)
+            if (comboBox1.SelectedIndex > -1 && comboBox2.SelectedIndex > -1)
             {
+
 
 
                 button4_Click(null, EventArgs.Empty);
@@ -419,5 +420,9 @@ namespace WindowsFormsApp1
             memoryGraphics.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, s);
         }
 
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

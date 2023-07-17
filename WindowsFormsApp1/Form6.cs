@@ -100,16 +100,17 @@ namespace WindowsFormsApp1
         private void button3_Click(object sender, EventArgs e)
         {
             var email = new MimeMessage();
-            email.From.Add(new MailboxAddress("Sender Name", "ahmedrezashams4@gmail.com"));
+            email.From.Add(new MailboxAddress("Automatd Courier and Parcel", "ahmedrezashams4@gmail.com"));
             email.To.Add(new MailboxAddress("Receiver Name", textBox6.Text));
-            email.To.Add(new MailboxAddress("Sender Name", textBox4.Text));
+            email.To.Add(new MailboxAddress("Sent by", textBox4.Text));
 
-            email.Subject = "Automated Courier and Parcel";
-            /* email.Body = new TextPart(MimeKit.Text.TextFormat.Plain)
+            email.Subject = "Parcel Booking";
+            email.Body = new TextPart(MimeKit.Text.TextFormat.Plain)
              {
-                 Text = "Hello all the way from the land of C#"
-             };*/
+                 Text = ""
+             };
             var builder = new BodyBuilder();
+            builder.TextBody = "A Parcel is booked by your name. Please collect it from our store by using the attached QR. Thanks";
             builder.Attachments.Add("QrCode.png");
             email.Body = builder.ToMessageBody();
             using (var smtp = new MailKit.Net.Smtp.SmtpClient())
@@ -168,6 +169,35 @@ namespace WindowsFormsApp1
     private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
 
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            button3_Click(null, EventArgs.Empty);
+            button1_Click(null, EventArgs.Empty);
+            label5.Visible = true;
+            await Task.Delay(5000);
+            label5.Visible = false;
+            label9.Visible = true;
+            await Task.Delay(10000);
+            label9.Visible = false;
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form2 fm2 = new Form2();
+            fm2.Show();
+            this.Close();    
         }
     }
 

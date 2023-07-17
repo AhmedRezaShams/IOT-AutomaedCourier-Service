@@ -126,7 +126,7 @@ namespace WindowsFormsApp1
                 MySqlCommand cmd1 = new MySqlCommand(insert1, con);
                 int i = cmd.ExecuteNonQuery();
                 int j = cmd1.ExecuteNonQuery();
-                MessageBox.Show(i.ToString());
+               // MessageBox.Show(i.ToString());
                 if (i == 1)
                 {
                     Form5 fm5 = new Form5();
