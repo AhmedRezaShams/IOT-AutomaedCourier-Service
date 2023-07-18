@@ -41,9 +41,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /* serialPort1.Open();
-             string m1 = "run";
-             serialPort1.Write(m1);
+            /* 
             */
             PrintDocument pd = new PrintDocument();
             pd.PrintPage += PrintPage;
@@ -195,6 +193,9 @@ namespace WindowsFormsApp1
 
         private void button5_Click(object sender, EventArgs e)
         {
+            serialPort1.Open();
+            string m1 = "run";
+            serialPort1.Write(m1);
             Form2 fm2 = new Form2();
             fm2.Show();
             this.Close();    

@@ -44,7 +44,8 @@ namespace WindowsFormsApp1
             InitializeComponent();
             //serialPort1.DtrEnable = false;
             serialPort1.Open();
-
+            //serialPort1.NewLine = "\r\n";
+           
         }
 
 
@@ -163,19 +164,24 @@ namespace WindowsFormsApp1
             
         }
 
-        private async void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
+            //serialPort1.DiscardInBuffer();
+            //serialPort1.DiscardOutBuffer();
             if (comboBox1.SelectedIndex > -1 && comboBox2.SelectedIndex > -1)
             {
-
-               // button4_Click(null, EventArgs.Empty);
+                // button4_Click(null, EventArgs.Empty);
                 button3_Click(null, EventArgs.Empty);
                 string m1 = "ok";
                 serialPort1.Write(m1);
+                
                 string s = serialPort1.ReadLine();
-               // float a = float.Parse(valueOfPort, CultureInfo.InvariantCulture.NumberFormat);
+                serialPort1.DiscardInBuffer();
                 double a = Convert.ToDouble(s);
-                textBox8.Text = s;
+                //await Task.Delay(5000);
+                //serialPort1.DiscardInBuffer();
+                
+                textBox8.Text = a.ToString() ;
                 textBox8.Refresh();
                 double i = 0.05;
                 double j = 0.10;
@@ -310,10 +316,10 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Please Select Description and Quantity");
             }
 
-            /*if (serialPort1.IsOpen)
+            if (serialPort1.IsOpen)
             {
                 serialPort1.Close();
-            }*/
+            }
 
         }
 
