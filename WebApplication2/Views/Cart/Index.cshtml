@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cart</h1>
+
+@*<table cellpadding="2" cellspacing="2" border="1">
+    <tr>
+        <th>
+            Option
+        </th>
+        <th>
+            Id
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Photo
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Sub Total
+        </th>
+    </tr>
+    @foreach (var item in ViewBag.cart)
+    {
+<tr>
+    <td> <a asp-controller="cart" asp-action="remove" asp-route-Id="@item.Product.Id">Remove</a> </td>
+    <td> @item.Product.Id </td>
+    <td> @item.Product.Name </td>
+    <td> <img src="~/Images/@item.Product.Photo" width="60" /> </td>
+    <td> @item.Product.Price </td>
+    <td> @item.Quantity </td>
+    <td> @(item.Product.Price * item.Quantity) </td>
+</tr>
+    }
+    <tr>
+        <td align="right" colspan="6">
+            Sum
+        </td>
+        <td>
+            @ViewBag.total
+        </td>
+    </tr>
+
+</table>*@
+
+
+<div class="row">
+
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Photo")
+                    </th>
+
+                    <th>
+                        @Html.DisplayName("Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Price")
+                    </th>
+
+                    <th>
+                        @Html.DisplayName("Quantity")
+                    </th>
+                    <th>
+                        @Html.DisplayName("SubTotal")
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody id="myTable">
+                @foreach (var item in ViewBag.cart)
+                {
+                    <tr>
+                        <td>
+                            @item.Pet.Name
+                        </td>
+                        <td>
+                            <img src="@("~/image/"+item.Pet.ImageName)" asp-append-version="true" width="50px" height="50px" />
+                        </td>
+                        <td>
+                            @item.Pet.Price
+                        </td>
+                        <td>
+                            @item.Quantity
+                        </td>
+                        <td>
+                            @(item.Pet.Price * item.Quantity)
+                        </td>
+                    </tr>
+                }
+
+                <tr>
+                    <td align="right" colspan="4">
+                        Sum
+                    </td>
+                    <td>
+                        @ViewBag.total
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<a asp-controller="Pets" asp-action="Index" class="btn btn-sm btn-info" >Continue Shoping</a>
+<a asp-controller="Checkout" asp-action="Index" class="btn btn-sm btn-outline-success">Checkout</a>
+
+
+
