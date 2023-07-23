@@ -71,7 +71,7 @@ namespace PetInformation
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Pets}/{action=Index}/{id?}");
+                    pattern: "{controller=Checkout}/{action=Index}/{id?}");
             });
         }
     }

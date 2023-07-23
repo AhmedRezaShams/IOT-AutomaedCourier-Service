@@ -11,21 +11,21 @@ namespace PetInformation.Controllers
 {
     public class CheckoutController : Controller
     {
-
-        [TempData]
-        public string TotalAmount { get; set; }
+        public string TotalAmount;
 
         public IActionResult Index()
         {
-            var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            ViewBag.cart = cart;
-            //ViewBag.DollarAmount= cart.Sum(item => item.Pet.Price * item.Quantity);
-            //ViewBag.total = Math.Round(ViewBag.DollarAmount,2)*100;
-            //ViewBag.total = Convert.ToInt64(ViewBag.total);
-            //long total =ViewBag.total;
-            //TotalAmount = total.ToString();
 
-            //TempData["TotalAmount"] = TotalAmount;
+            // var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            //var cart = "12";
+           // ViewBag.cart = 12;
+            //ViewBag.DollarAmount= cart;
+            //ViewBag.total = Math.Round(ViewBag.DollarAmount,2)*100;
+            //ViewBag.total = Convert.ToInt64(ViewBag.cart);
+           // long total =ViewBag.total;
+            //TotalAmount = total.ToString();
+            TotalAmount = "12";
+           // TempData["TotalAmount"] = TotalAmount;
             return View();
         }
         public IActionResult Processing(string stripeToken,string stripeEmail)
@@ -40,7 +40,8 @@ namespace PetInformation.Controllers
             Customer customer = serviceCust.Create(optionCust);
             var optionsCharge = new ChargeCreateOptions
             {
-                Amount = Convert.ToInt64(TempData["TotalAmount"]),
+                Amount = Convert.ToInt64(TotalAmount),
+                
                 Currency = "USD",
                 Description="Pet Selling amount",
                 Source=stripeToken,
@@ -52,7 +53,7 @@ namespace PetInformation.Controllers
             if(charge.Status== "succeeded")
             {
                 ViewBag.AmountPaid =Convert.ToDecimal(charge.Amount)%100/100+(charge.Amount)/100;
-                ViewBag.Customer = customer.Name;
+                //ViewBag.Customer = customer.Name;
             }
             return View();
 
