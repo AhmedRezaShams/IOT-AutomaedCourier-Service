@@ -179,6 +179,7 @@ namespace WindowsFormsApp1
             label9.Visible = true;
             await Task.Delay(10000);
             label9.Visible = false;
+            button2.Visible = false;
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -196,8 +197,8 @@ namespace WindowsFormsApp1
             serialPort1.Open();
             string m1 = "run";
             serialPort1.Write(m1);
-            Form2 fm2 = new Form2();
-            fm2.Show();
+            Form1 fm1 = new Form1();
+            fm1.Show();
             this.Close();    
         }
     }

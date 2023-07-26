@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automated Courier Service",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{410004FC-A96D-4236-9CEF-1BECB4451E7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1", "BlazorApp1\BlazorApp1.csproj", "{169E201D-2258-4984-ACB6-994C24DB0996}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{410004FC-A96D-4236-9CEF-1BECB4451E7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{410004FC-A96D-4236-9CEF-1BECB4451E7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{410004FC-A96D-4236-9CEF-1BECB4451E7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{169E201D-2258-4984-ACB6-994C24DB0996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{169E201D-2258-4984-ACB6-994C24DB0996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{169E201D-2258-4984-ACB6-994C24DB0996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{169E201D-2258-4984-ACB6-994C24DB0996}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

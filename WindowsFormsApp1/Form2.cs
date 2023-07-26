@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
         public Form2()
         {
             InitializeComponent();
+            serialPort1.Open();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -47,9 +48,15 @@ namespace WindowsFormsApp1
 
         private void label3_Click(object sender, EventArgs e)
         {
+            string m1 = "kk";
+            serialPort1.Write(m1);
             send fm4 = new send();
             fm4.Show();
             this.Close();
+            if (serialPort1.IsOpen)
+           {
+                serialPort1.Close();
+           }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -63,5 +70,6 @@ namespace WindowsFormsApp1
         {
             
         }
+        
     }
 }
