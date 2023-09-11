@@ -103,6 +103,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(200, 36);
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
+            this.richTextBox1.Visible = false;
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // richTextBox2
@@ -112,6 +113,7 @@
             this.richTextBox2.Size = new System.Drawing.Size(200, 36);
             this.richTextBox2.TabIndex = 6;
             this.richTextBox2.Text = "";
+            this.richTextBox2.Visible = false;
             this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
             // 
             // button2
