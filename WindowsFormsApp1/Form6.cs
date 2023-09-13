@@ -14,12 +14,16 @@ using MailKit.Net.Smtp;
 using MailKit;
 using MimeKit;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using IronBarCode;
+//using IronBarCode;
+using QRCoder;
 using System;
 using System.Drawing;
 using System.Linq;
 using SixLabors.ImageSharp.Formats.Png;
 using System.Drawing.Printing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Windows.Media.Media3D;
 
 namespace WindowsFormsApp1
 {
@@ -41,8 +45,8 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /* 
-            */
+            
+            
             PrintDocument pd = new PrintDocument();
             pd.PrintPage += PrintPage;
             pd.Print();
@@ -115,8 +119,8 @@ namespace WindowsFormsApp1
             {
                 smtp.Connect("smtp.gmail.com", 587, false);
 
-                // Note: only needed if the SMTP server requires authentication
-                smtp.Authenticate("ahmedrezashams4@gmail.com", "haaseefhywxvopxa");
+               
+                smtp.Authenticate("ahmedrezashams4@gmail.com", "pentjnlsfnlehlqt");
 
                 smtp.Send(email);
                 smtp.Disconnect(true);
@@ -146,11 +150,22 @@ namespace WindowsFormsApp1
 
         private void button4_Click(object sender, EventArgs e)
         {
-                GeneratedBarcode Qrcode = QRCodeWriter.CreateQrCode(textBox1.Text);
+            QRCodeGenerator qr = new QRCodeGenerator();
+            QRCodeData data = qr.CreateQrCode(textBox1.Text, QRCodeGenerator.ECCLevel.Q);
+            QRCode code = new QRCode(data);
+            Image image = code.GetGraphic(8);
+            pictureBox1.Image = new Bitmap("QrCode.png");
+            
+            string fileName = "QrCode.png";
+            FileStream fileStream = new FileStream(fileName, FileMode.Create);
+            image.Save(fileStream, ImageFormat.Png);
+            fileStream.Close();
+
+            /* GeneratedBarcode Qrcode = QRCodeWriter.CreateQrCode(textBox1.Text);
             Qrcode.ResizeTo(200, 200);
             Qrcode.SaveAsPng("QrCode.png");
             pictureBox1.Image = new Bitmap("QrCode.png");
-            
+           */
         }
 
 
@@ -176,10 +191,13 @@ namespace WindowsFormsApp1
             label5.Visible = true;
             await Task.Delay(5000);
             label5.Visible = false;
+            button2.Visible = false;
+            button5.Visible = true;
             label9.Visible = true;
             await Task.Delay(10000);
             label9.Visible = false;
-            button2.Visible = false;
+            
+           
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -199,7 +217,8 @@ namespace WindowsFormsApp1
             serialPort1.Write(m1);
             Form1 fm1 = new Form1();
             fm1.Show();
-            this.Close();    
+            this.Close();
+            
         }
     }
 
